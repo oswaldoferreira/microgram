@@ -42,5 +42,13 @@ I recommend taking a further look at [GKE](https://cloud.google.com/kubernetes-e
 
 ### Architecture
 
+The proposed architecture can easily change, but that's what I went for on Amazon as a playground:
 
+![Architecture](https://raw.githubusercontent.com/oswaldoferreira/microgram/main/architecture.png)
 
+1. Request hits a AWS load balancer
+2. Nginx serves the static content for `microgram-fe` (more machines could be added)
+3. [AWS API Gateway](https://aws.amazon.com/pt/api-gateway/) receives the request and decides which backend API to go to
+4. Both `microgram-feed` and `microgram-auth` services sit behind AWS load balancers
+5. `microgram-feed` depends on a Postgres instance and [Amazon S3](https://aws.amazon.com/pt/s3/) for media storage
+6. `microgram-auth` depends on Postgres for authentication
