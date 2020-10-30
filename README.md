@@ -43,6 +43,28 @@ The repositories above fall short when describing the processes to setup a Kuber
 
 I recommend taking a further look at [GKE](https://cloud.google.com/kubernetes-engine) and [EKS](https://aws.amazon.com/pt/eks/?whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc&eks-blogs.sort-by=item.additionalFields.createdDate&eks-blogs.sort-order=desc) solutions.
 
+Using this project, you'll endup with the following Kubernetes pod setup:
+
+```bash
+› kubectl get pods
+NAME                              READY   STATUS    RESTARTS   AGE
+microgram-auth-66cc68b8dd-wbqk7   1/1     Running   0          51m
+microgram-fe-5f6fc7b9cf-qtz5n     1/1     Running   0          51m
+microgram-feed-77c566bd87-228b7   1/1     Running   0          51m
+microgram-feed-77c566bd87-m9brc   1/1     Running   0          51m
+```
+
+And the following K8s services:
+
+```
+› kubectl get services
+NAME                    TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)        AGE
+kubernetes              ClusterIP      10.100.0.1       <none>                                                                    443/TCP        5d10h
+microgram-auth-lb-svc   LoadBalancer   10.100.158.170   a04c14c0e3b1843ae9c0ada419302b39-2052811953.sa-east-1.elb.amazonaws.com   80:30655/TCP   26h
+microgram-fe-svc        LoadBalancer   10.100.213.94    a12e954cc71d24037bc1361adb33a804-1927388553.sa-east-1.elb.amazonaws.com   80:30804/TCP   3d2h
+microgram-feed-lb-svc   LoadBalancer   10.100.27.58     a3af9e4b6e2094c759fae942e4781438-1541706164.sa-east-1.elb.amazonaws.com   80:32341/TCP   5d9h
+```
+
 ### Architecture
 
 The proposed architecture can easily change, but that's what I went for on Amazon as a playground:
