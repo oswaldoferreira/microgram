@@ -1,9 +1,12 @@
 # microgram
-A instagram-like application split into microservices.
+
+A basic instagram-like application split into microservices.
+
+The project uses Docker and Kubernetes.
 
 ### Setup
 
-Follow the instructions for each repo to run all services within Docker or local environment.
+Follow the instructions for each repo to run all services within Docker containers.
 
 - https://github.com/oswaldoferreira/microgram-auth
 - https://github.com/oswaldoferreira/microgram-feed
